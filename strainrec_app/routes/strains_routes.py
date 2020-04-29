@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, jsonify
 import json
 from strainrec_app.recommender import load_model, data
+from strainrec_app.services.mongo_service import strains_records as srecords
 
 strains_routes = Blueprint("strains_routes", __name__)
 
@@ -35,3 +36,8 @@ def recommend(input_string=None):
     print("RESULT:", strains_info)
 
     return jsonify(str(strains_info))
+
+
+@strains_routes.route("/api/v1/strains")
+def api_strains():
+    return jsonify(str(srecords))

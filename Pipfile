@@ -10,6 +10,9 @@ autopep8 = "*"
 flask = "*"
 scikit-learn = "*"
 pandas = "*"
+python-dotenv = "*"
+pymongo = "*"
+dnspython = "*"
 
 [requires]
 python_version = "3.7"
