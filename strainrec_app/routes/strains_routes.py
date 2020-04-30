@@ -8,7 +8,7 @@ strains_routes = Blueprint("strains_routes", __name__)
 
 @strains_routes.route("/")
 def home():
-    return "home"
+    return render_template("home.html")
 
 
 @strains_routes.route("/strains.json")
