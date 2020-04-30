@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 from strainrec_app.routes.strains_routes import strains_routes
+from strainrec_app.routes.howto_routes import howto_routes
 # TODO: models.py
 # from strainrec_app.models import db, migrate
 
@@ -13,6 +14,7 @@ def create_app():
     # migrate.init_app(app.db)
 
     app.register_blueprint(strains_routes)
+    app.register_blueprint(howto_routes)
     return app
 
 
