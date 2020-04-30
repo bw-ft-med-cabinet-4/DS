@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, redirect, jsonify
+from flask import Blueprint, render_template, redirect, jsonify, Response
 import json
+from bson import json_util
 from strainrec_app.recommender import load_model, data
 from strainrec_app.leafly_recommender import load_model as leafly_model
-from strainrec_app.services.mongo_service import strains_records as srecords
+from strainrec_app.services.mongo_service import strains_collection
 
 strains_routes = Blueprint("strains_routes", __name__)
 
@@ -39,7 +40,10 @@ def recommend(input_string=None):
 
 @strains_routes.route("/api/v1/strains")
 def api_strains():
-    return jsonify((srecords))
+    srecords = strains_collection.find({'isStub': False})
+    resp = Response(json.dumps(
+        {'data': list(srecords)}, default=json_util.default), mimetype='application/json')
+    return resp
 
 
 @strains_routes.route("/api/v1/recommend/<input_string>")
