@@ -28,14 +28,14 @@ def recommend(input_string=None):
     input_vec = package['tfidf'].transform([str(input_string)])
     predictions = package['model'].kneighbors(input_vec.todense())
     recommendations = predictions[1]
-    strains_info = []
+    strains_info = {}
     for i in range(4):
         info = data.iloc[recommendations[0][i]]
-        strains_info.append(info)
+        strains_info[i] = info.to_json()
 
     print("RESULT:", strains_info)
 
-    return jsonify(str(strains_info))
+    return json.dumps(strains_info)
 
 
 @strains_routes.route("/api/v1/strains")
