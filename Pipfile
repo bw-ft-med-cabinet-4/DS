@@ -8,11 +8,14 @@ autopep8 = "*"
 
 [packages]
 flask = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 scikit-learn = "*"
 pandas = "*"
 python-dotenv = "*"
 pymongo = "*"
 dnspython = "*"
+
 
 [requires]
 python_version = "3.7"
